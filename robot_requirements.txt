@@ -1,0 +1,24 @@
+===== RUN 1 =====
+1. The robot must receive and process information about whether the path in front, to the left, and to the right is blocked.  
+2. The robot must receive and process information about the location of its goal (ahead, to the left, or to the right).  
+3. The robot must prioritize moving toward its goal whenever such movement is safe (i.e., the corresponding path is unblocked).  
+4. The robot must never attempt to move into a blocked direction.  
+5. If no unblocked directions are available (all paths are blocked), the robot must stop.  
+6. When multiple safe directions are available, the robot must select the direction that aligns with the goal's location (ahead, left, or right).  
+7. The navigation system must be adaptable to different simulated environments, allowing for varying path configurations and goal positions.
+
+===== RUN 2 =====
+1. The system must receive and process input indicating whether the path ahead, to the left, and to the right is blocked.  
+2. The system must receive and process input indicating the direction of the robot's goal (ahead, left, or right).  
+3. The navigation logic must prioritize movement toward the goal's direction whenever it is safe (i.e., the path is not blocked).  
+4. The system must prevent the robot from moving into any blocked direction.  
+5. If no safe direction exists (all paths are blocked or unsafe), the robot must stop movement.  
+6. The navigation component must be designed to operate in multiple simulated environments, ensuring adaptability to different testing scenarios.
+
+===== RUN 3 =====
+1. The system must receive input indicating whether the path in front, to the left, and to the right is blocked.  
+2. The system must receive input indicating the direction of the goal (ahead, to the left, or to the right).  
+3. The navigation logic must prioritize moving toward the goal whenever it can be done safely.  
+4. The system must never attempt to move into a blocked direction.  
+5. If no safe direction is available (i.e., all paths are blocked or moving toward the goal is not possible), the robot must stop.
+
