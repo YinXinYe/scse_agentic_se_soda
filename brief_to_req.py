@@ -6,20 +6,15 @@ Analyst Agent later forces a strict JSON contract).
 Produces: robot_requirements.txt
 """
 
-import requests
+from ollama import chat
 
 BRIEF_PATH = "brief.txt"
 OUTPUT_PATH = "robot_requirements.txt"
 
-OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
 MODEL = "qwen3:8b"
 
 # Run several times so we can compare the outputs and judge consistency.
 NUM_RUNS = 3
-
-# A non-trivial temperature on purpose: it lets us see that free-form
-# answers vary between runs, which is the whole point of this exercise.
-TEMPERATURE = 0.7
 
 PROMPT_TEMPLATE = (
     "You are a requirements engineer.\n"
@@ -30,26 +25,22 @@ PROMPT_TEMPLATE = (
 )
 
 
-def read_brief(path: str = BRIEF_PATH) -> str:
+def read_brief(path=BRIEF_PATH):
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
 
-def ask_qwen(brief_text: str) -> str:
-    payload = {
-        "model": MODEL,
-        "messages": [
+def ask_qwen(brief_text):
+    response = chat(
+        model=MODEL,
+        messages=[
             {"role": "user", "content": PROMPT_TEMPLATE.format(brief=brief_text)},
         ],
-        "stream": False,
-        "options": {"temperature": TEMPERATURE},
-    }
-    resp = requests.post(OLLAMA_URL, json=payload, timeout=300)
-    resp.raise_for_status()
-    return resp.json()["message"]["content"]
+    )
+    return response.message.content
 
 
-def main() -> None:
+def main():
     brief = read_brief()
 
     runs = []
