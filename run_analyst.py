@@ -12,12 +12,12 @@ ARTIFACTS_DIR = "artifacts"
 OUTPUT_PATH = os.path.join(ARTIFACTS_DIR, "requirements.json")
 
 
-def read_brief(path: str = BRIEF_PATH) -> str:
+def read_brief(path=BRIEF_PATH):
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
 
-def main() -> None:
+def main():
     brief_text = read_brief()
 
     # Call the agent and receive the final validated software requirements.
